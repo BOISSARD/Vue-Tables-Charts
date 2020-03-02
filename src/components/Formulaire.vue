@@ -1,28 +1,62 @@
 <template>
-  <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-      <small
-        id="emailHelp"
-        class="form-text text-muted"
-      >We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" />
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+    <form @submit.prevent="ajouter">
+        <div class="row">
+            <div class="col-sm-3">
+                <label for="nom">Nom :</label>
+            </div>
+            <div class="col-sm-3">
+                <label for="valeur">Valeur :</label>
+            </div>
+            <div class="col-sm-3">
+                <label for="categorie">Catégorie :</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <input type="text" class="form-control" id="nom" v-model="nom" />
+            </div>
+            <div class="col-sm-3">
+                <input type="number" class="form-control" id="valeur" v-model="valeur" />
+            </div>
+            <div class="col-sm-3">
+                <select class="form-control" id="categorie" v-model="categorie">
+                    <option
+                        v-for="(valeur, cle) in this.categories"
+                        :key="cle"
+                        :value="cle"
+                    >{{ valeur }}</option>
+                </select>
+            </div>
+            <div class="col">
+                <button type="submit" class="btn btn-primary btn-block">ajouter</button>
+            </div>
+        </div>
+    </form>
 </template>
 
 <script>
+import Objet from "../model/objet";
+import { Categories } from "../model/categories";
+
 export default {
-  name: "Formulaire"
+    name: "Formulaire",
+    data() {
+        return {
+            nom: "",
+            valeur: 0,
+            categorie: null,
+            categories: Categories
+        };
+    },
+    mounted() {},
+    methods: {
+        ajouter() {
+            console.log(this.nom);
+            console.log(this.valeur);
+            console.log(Categories[this.categorie]);
+            this.$emit("ajout", new Objet(this.nom, this.valeur, Categories[this.categorie]));
+        }
+    }
 };
 </script>
 
