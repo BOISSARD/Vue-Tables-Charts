@@ -11,9 +11,6 @@ import Formulaire from "./components/Formulaire";
 import Tableau from "./components/Tableau";
 import Graphiques from "./components/Graphiques";
 
-//import 'bootstrap'
-import "bootstrap/dist/css/bootstrap.min.css";
-
 import { Categories } from "./model/categories";
 import Objet from "./model/objet";
 
@@ -46,6 +43,3 @@ export default {
 	}
 };
 </script>
-
-<style>
-</style>

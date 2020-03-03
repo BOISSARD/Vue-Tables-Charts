@@ -1,4 +1,4 @@
-# tables-maps
+# vuetify-tables-maps
 
 ## Project setup
 ```
